@@ -48,3 +48,29 @@ void setup() {
     pinMode(pinosBotoes[i], INPUT_PULLUP);
   }
 }
+
+void loop() {
+  byte estadoAtual = lerEstadoBotoes();
+
+  if (estadoAtual > 0) {
+    byte combinacaoFinal = 0;
+
+    // Aguarda soltar os botões acumulando o acorde
+    while (lerEstadoBotoes() > 0) {
+      combinacaoFinal |= lerEstadoBotoes();
+      delay(10);
+    }
+
+    processarBraille(combinacaoFinal);
+  }
+}
+
+byte lerEstadoBotoes() {
+  byte mascara = 0;
+  for (int i = 0; i < 6; i++) {
+    if (digitalRead(pinosBotoes[i]) == LOW) {
+      mascara |= (1 << i);
+    }
+  }
+  return mascara;
+}
