@@ -1,18 +1,6 @@
 #include <Arduino.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
 
-// put function declarations here:
-int myFunction(int, int);
-
-void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
-}
-
-void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
-}
+// Inicializa o LCD no endereço 0x27 (padrão do Tinkercad) com 16 colunas e 2 linhas
+LiquidCrystal_I2C lcd(0x27, 16, 2);
