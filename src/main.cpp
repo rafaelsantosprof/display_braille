@@ -29,3 +29,22 @@ const int totalLetras = sizeof(tabelaBraille) / sizeof(tabelaBraille[0]);
 // Variáveis de controle da tela
 int colunaAtual = 0;
 int linhaAtual = 1;
+
+void setup() {
+  Serial.begin(9600);
+
+  // Inicializa o LCD I2C
+  lcd.init();
+  lcd.backlight();
+  
+  // Mensagem inicial na tela
+  lcd.setCursor(0, 0);
+  lcd.print("Teclado Braille:");
+  
+  // Posiciona o cursor na segunda linha onde a digitação vai aparecer
+  lcd.setCursor(0, 1);
+
+  for (int i = 0; i < 6; i++) {
+    pinMode(pinosBotoes[i], INPUT_PULLUP);
+  }
+}
