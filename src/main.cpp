@@ -74,3 +74,28 @@ byte lerEstadoBotoes() {
   }
   return mascara;
 }
+
+void processarBraille(byte mascara) {
+  char letraEncontrada = '?';
+  bool encontrada = false;
+
+  for (int i = 0; i < totalLetras; i++) {
+    if (tabelaBraille[i].mascara == mascara) {
+      letraEncontrada = tabelaBraille[i].letra;
+      encontrada = true;
+      break;
+    }
+  }
+
+  if (encontrada) {
+    // Imprime no Monitor Serial
+    Serial.print("Letra: ");
+    Serial.println(letraEncontrada);
+
+    // Escreve o caractere no Display LCD
+    escreverNoLCD(letraEncontrada);
+  } else {
+    Serial.print("Combinacao nao reconhecida: ");
+    Serial.println(mascara, BIN);
+  }
+}
