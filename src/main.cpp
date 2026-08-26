@@ -99,3 +99,15 @@ void processarBraille(byte mascara) {
     Serial.println(mascara, BIN);
   }
 }
+void escreverNoLCD(char c) {
+  // Se a linha de digitação encher (16 caracteres), limpa a linha e recomeça
+  if (colunaAtual >= 16) {
+    lcd.setCursor(0, 1);
+    lcd.print("                "); // Limpa a linha 2
+    colunaAtual = 0;
+  }
+
+  lcd.setCursor(colunaAtual, 1);
+  lcd.print(c);
+  colunaAtual++;
+}
