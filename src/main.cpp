@@ -114,6 +114,8 @@ void processarBraille(byte mascara) {
 
   for (int i = 0; i < totalLetras; i++) {
     if (tabelaBraille[i].mascara == mascara) {
+      // >> JV: Talvez aqui fique melhor passar passar "tabelaBraille[i]" em "letraEncontrada"
+      // Porque aí vai facilitar o controle pelo buffer, que será encaminhado pro mecanismo.
       letraEncontrada = tabelaBraille[i].letra;
       encontrada = true;
       break;
